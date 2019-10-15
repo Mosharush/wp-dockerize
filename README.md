@@ -14,7 +14,7 @@ npm start
 ```
 
 ---
-#### Run services:
+#### Stop services:
 ```
 docker-compose down
 ```
@@ -24,7 +24,7 @@ npm stop
 ```
 
 ---
-#### To do full rebuild docker images & containers:
+#### Rebuild docker images & containers:
 ```
 docker-compose down --remove && docker-compose up --force-recreate --build -d
 ```
