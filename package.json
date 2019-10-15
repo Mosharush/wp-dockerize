@@ -1,0 +1,16 @@
+{
+  "name": "wp-dockerize",
+  "version": "1.0.0",
+  "description": "WP Project + Docker for development",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose stop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Y2-MosheHarush/wp-dockerize.git"
+  },
+  "author": "Moshe Harush",
+  "license": "GPL 3"
+}
