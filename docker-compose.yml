@@ -1,48 +1,38 @@
-  version: '3.7'
+version: '3.7'
 
-  services:
-     wordpress:
-          depends_on:
-            - db
-          image: wordpress:latest
-          restart: always
-          ports:
-            - 80:80
-          environment:
-            WORDPRESS_DB_HOST: db:3306
-            WORDPRESS_DB_USER: root
-            WORDPRESS_DB_PASSWORD: MyStr0ngP455
-          networks:
-            - back
-          volumes:
-            - type: bind
-              source: ./wp
-              target: /var/www/html/wp-content
-     db:
-       image: mysql:8.0.0
-       command: --default-authentication-plugin=mysql_native_password
-       restart: always
-       ports:
-         - "3306:3306"
-       volumes:
-         - ./db:/var/lib/mysql
-       environment:
-         MYSQL_ROOT_PASSWORD: MyStr0ngP455
-       networks:
-        - back
-     phpmyadmin:
-      depends_on:
-        - db
-      image: phpmyadmin/phpmyadmin
-      restart: always
-      ports:
-        - 8080:80
-      environment:
-        PMA_HOST: db
-        PMA_PORT: 3306
-        PMA_USER: root
-        PMA_PASSWORD: MyStr0ngP455
-      networks:
-        - back
-  networks:
-    back:
+services:
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: MyStr0ngP455
+    volumes:
+      - ./wp:/var/www/html/wp-content
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+     - "3306:3306"
+    volumes:
+     - ./db:/var/lib/mysql
+    environment:
+     MYSQL_ROOT_PASSWORD: MyStr0ngP455
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    volumes:
+      - ./pma/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: MyStr0ngP455

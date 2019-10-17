@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  wordpress:
+    ports:
+      - 80:80
+
+  phpmyadmin:
+    ports:
+      - 8080:80
