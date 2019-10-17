@@ -16,7 +16,7 @@ npm start
 ---
 #### Stop services:
 ```
-docker-compose down
+docker-compose -f docker-compose.yml -f docker-compose.http.yml down
 ```
 OR
 ```
