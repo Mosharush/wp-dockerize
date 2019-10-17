@@ -4,8 +4,9 @@
   "description": "WP Project + Docker for development",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "docker-compose up -d",
-    "stop": "docker-compose stop"
+    "start": "docker-compose -f docker-compose.yml -f docker-compose.http.yml up -d",
+    "ssl": "docker-compose -f docker-compose.yml -f docker-compose.https.yml up -d",
+    "stop": "docker-compose down"
   },
   "repository": {
     "type": "git",
